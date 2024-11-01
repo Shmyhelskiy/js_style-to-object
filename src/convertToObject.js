@@ -12,10 +12,11 @@ function convertToObject(sourceString) {
     .split(';')
     .filter((item) => item.includes(':'))
     .forEach((item) => {
-      const [property, ...valueParts] = item.split(':');
-      const value = valueParts.join(':').trim();
+      const colonIndex = item.indexOf(':');
+      const property = item.slice(0, colonIndex).trim();
+      const value = item.slice(colonIndex + 1).trim();
 
-      styleObject[property.trim()] = value;
+      styleObject[property] = value;
     });
 
   return styleObject;
